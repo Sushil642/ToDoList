@@ -1,0 +1,64 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* background-color: #2c3e50;  */
+    background-color: #151413;
+    background-image: linear-gradient(43deg, #151413 0%, #5090c8 46%, #f7a208 100%);
+    
+    
+
+    color: #ecf0f1; /* Light text color */
+}
+
+h2 {
+    color: #f39c12; /* Yellow heading color */
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    /* background-color: #374c62;  */
+    background-color: rgba(55, 76, 98,.5);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #f39c12; /* Yellow label color */
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #566573; /* Border color */
+    border-radius: 4px;
+    background-color: #2c3e50; /* Dark background color */
+    color: #ecf0f1; /* Light text color */
+}
+
+button {
+    padding: 12px;
+    background-color: #f39c12; /* Yellow button color */
+    color: #2c3e50; /* Dark text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #d68910; /* Darker yellow on hover */
+}

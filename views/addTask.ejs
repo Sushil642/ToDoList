@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="addTask.css">
+</head>
+<body>
+   
+    <form action="/submit" method="post">
+        <h2>Add Task</h2>
+        <label for="task">Task*:</label>
+        <input type="text" id="task" name="task" required>
+
+        <label for="description">Task Description:</label>
+        <textarea id="description" name="description" rows="4" ></textarea>
+
+        <label for="time">Set Time*:</label>
+        <input type="time" id="time" name="time" required>
+
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>

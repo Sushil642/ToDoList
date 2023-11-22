@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="list.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <div class="mainbody">
+        <div class="mainframe ">
+            <div class="header row"> 
+                 <div class="col-6 row">
+                    <div class="col-3">
+                         <div class="date"><%= date %></div>
+                        </div>
+                    <div class="col-7">
+                     <div class="month"><h3> <%=month%></h3></div>
+                    <div class="year"><p><%= year %></p></div>
+                </div>
+               
+               
+            </div>
+                   <div class="col-6">
+                <div class="day">  <h4><%=day %></h4></div>
+            </div> 
+            </div>
+    <div class="taskbox ">
+        <div class="task">
+            <% for(var i=0;i<items.length;i++){ %>
+                <div class=" works row" class="" id="form<%=i%>" > 
+                  
+                    
+                    <div class="col-10 task-container">
+                        <div class="row">
+                            <div class="col-12 row">
+                                <div class=" col-2 checkbox-wrapper-39"> 
+                                    <label>
+                                        <input type="checkbox"/>
+                                        <span class="checkbox"></span>
+                                      </label></div>
+                                <div class="col-10"><p class="taskName"><h5 class="tasknm" id="taski<%=i%>"><%=items[i]  %></h5></p></div>
+                                
+                            </div>
+                            <div class="col-12 px-5">
+                                <p class="description" id="desp<%= i %>"><%= Desc[i] %></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- <div class="col-2"> <input  type="checkbox"></div> -->
+                    <div class=" col-2 ">
+                        <div class="row">
+                           
+                            <div class="col-12">
+                                <p id="time<%=i%>"><%= Time[i] %></p>
+                            </div>
+                            <div class=" row">
+                                <div class="col-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="edit" class="bi bi-pencil-square" viewBox="0 0 16 16" onclick="editTask(`<%= i %>`)">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                          </svg>
+                                    </div>
+                                <div class="col-6">
+                                   
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" onclick="deleteTask(`<%= i %>`)">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                          </svg>
+                                
+                                   
+                                </div>
+                            </div>
+                              
+                        </div>
+                       
+                      </div>
+                   
+                </div>
+        <% } %>
+            
+        </div>
+   
+    </div>
+<form action="/" method="post">
+<!-- <input type="text" name="newItem" placeholder="Enter Task"> -->
+<button class="add">+</button>
+</form>
+</div>
+    </div>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".checkbox");
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('click', function() {
+            const taskContainer = checkbox.closest('.task-container');
+            const task = taskContainer.querySelector('.tasknm');
+            const desc = taskContainer.querySelector('.description');
+            task.classList.toggle("dele");
+            desc.classList.toggle("dele");
+        });
+    });
+});
+
+async function editTask(index) {
+    const taskNameElement = document.querySelector(`#taski${index}`);
+    const descriptionElement = document.querySelector(`#desp${index}`);
+    
+    // const newTaskName = prompt("Enter new task name:", taskNameElement.innerText);
+    const { value: newTaskName } =  await Swal.fire({
+  input: "textarea",
+  inputLabel: "Enter Task",
+  inputPlaceholder: taskNameElement.innerText,  
+  inputValue:taskNameElement.innerText,
+  inputAttributes: {
+    "aria-label": "Type your message here"
+  },
+  showCancelButton: true
+});
+
+    // const newDescription = prompt("Enter new description:", descriptionElement.innerText);
+    const { value: newDescription } = await Swal.fire({
+  input: "textarea",
+  inputLabel: "Enter Description",
+  inputPlaceholder: descriptionElement.innerText,
+  inputValue:descriptionElement.innerText
+});
+
+
+    if (newTaskName !== null && newDescription !== null) {
+        taskNameElement.innerText = newTaskName;
+        descriptionElement.innerText = newDescription;
+    }
+};
+function deleteTask(index) {
+    // Perform any additional confirmation logic if needed
+          
+    // Remove the entire element with ID form   
+    const formElement = document.getElementById(`form${index}`);
+   
+        formElement.remove();
+    
+}
+
+
+
+</script>
+</html>
